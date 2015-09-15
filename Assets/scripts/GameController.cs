@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (startGame == false) {
 			startNextRound ();
 		} else {
@@ -60,9 +60,9 @@ public class GameController : MonoBehaviour {
 	public void finishedAnimation() {
 		if (currentPlayNumber >= roundOrder.Count) {
 			startPlayerPhase ();
+		} else {
+			inAnimationPhase = false;
 		}
-		
-		inAnimationPhase = false;
 	}
 
 	public void startNextRound() {
@@ -73,6 +73,7 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Starting new round");
 		startGame = true;
 		isPlayerPhase = false;
+		inAnimationPhase = false;
 		//add the next block to click
 		roundOrder.Add(Random.Range(0, 9));
 		currentPlayNumber = 0;

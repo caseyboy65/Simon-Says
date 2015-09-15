@@ -15,10 +15,10 @@ public class GamePiece : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (isAnimating || isPlayerClicking) {
-			Debug.Log ("Is in idle state" + animate.GetCurrentAnimatorStateInfo (0).IsName ("Idle"));
-			if (animate.GetCurrentAnimatorStateInfo (0).IsName ("Idle")) {
+			//Debug.Log ("Is in idle state" + animate.GetCurrentAnimatorStateInfo (0).IsName ("Idle"));
+			if (animate.GetCurrentAnimatorStateInfo (0).IsName ("Standby")) {
 			//if (animate.IsInTransition ()) {
 				if (isAnimating) {
 					GameObject.Find ("GameController").GetComponent<GameController> ().finishedAnimation ();
@@ -34,6 +34,7 @@ public class GamePiece : MonoBehaviour {
 	public void animatePiece() {
 		//Trigger animation here
 		isAnimating = true;
+		//animate.SetTrigger ("flicker");
 		animate.Play ("Flicker");
 
 	}
@@ -41,6 +42,7 @@ public class GamePiece : MonoBehaviour {
 	void OnMouseDown() {
 		if (GameObject.Find ("GameController").GetComponent<GameController> ().getPlayerPhase ()) {
 			isPlayerClicking = true;
+			//animate.SetTrigger ("flicker");
 			animate.Play ("Flicker");
 		}
 
