@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	//Game difficulty, 1 = easy, 2 = medium, 3 = hard, 4 = impossible
-	public int gameDifficutly = 1;
+	//public int gameDifficutly = 1;
 	
 	//Game settings based on difficulty
 	int resetCounter = 0;
@@ -27,7 +27,9 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		//Set up vars based on game difficulty
 		/* EASY MODE */
-		if (gameDifficutly == 1) {
+		GameSettings gameSettings = GameObject.Find ("ParamObj").GetComponent<GameSettings> ();
+		int gameDifficulty = gameSettings.getGameDifficulty ();
+		if (gameDifficulty == 1) {
 			resetCounter = 5;
 		}
 		
