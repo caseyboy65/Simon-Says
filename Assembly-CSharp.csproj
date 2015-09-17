@@ -46,8 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\GameController.cs" />
-     <Compile Include="Assets\scripts\GamePiece.cs" />
+     <Compile Include="Assets\scripts\GameOver\GameOver.cs" />
+     <Compile Include="Assets\scripts\GamePlay\GameController.cs" />
+     <Compile Include="Assets\scripts\GamePlay\GamePiece.cs" />
      <Compile Include="Assets\scripts\MainMenu\GameSettings.cs" />
      <Compile Include="Assets\scripts\MainMenu\MainMenu.cs" />
  <Reference Include="UnityEngine.UI">

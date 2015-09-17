@@ -16,7 +16,7 @@ Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data
 Loading C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.054 seconds
+- Completed reload, in  0.108 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,32 +24,18 @@ desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\System.dll (this message is harmless)
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.855555 ms
+UnloadTime: 0.924000 ms
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 222.
-Total: 0.261555 ms (FindLiveObjects: 0.031777 ms CreateObjectMapping: 0.032755 ms MarkObjects: 0.174044 ms  DeleteObjects: 0.013200 ms)
-
-Starting new round
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 223.
+Total: 0.295288 ms (FindLiveObjects: 0.028844 ms CreateObjectMapping: 0.029333 ms MarkObjects: 0.212666 ms  DeleteObjects: 0.014177 ms)
 
 Starting new round
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
-Starting new round
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.737244 ms
 
-Starting new round
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Starting new round
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Starting new round
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 161.
+Total: 0.332444 ms (FindLiveObjects: 0.022000 ms CreateObjectMapping: 0.024444 ms MarkObjects: 0.223911 ms  DeleteObjects: 0.051333 ms)
 

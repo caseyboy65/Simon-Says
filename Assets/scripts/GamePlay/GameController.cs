@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour {
 		if (correctObj.Equals (clickedObj)) {
 			playerClickNumber++;
 		} else {
-			Debug.Log ("Game Over");
+			Application.LoadLevel ("GameOver");
 		}
 
 		if (playerClickNumber >= roundOrder.Count) {
