@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour {
 	
 	//Game Scoring
 	int gameScore = 0;
+	int scoreMultiplier = 1;
+
+
 	float roundNumberPercent = 0;					//Percentage of Game round completed. ranges from 0-1
 	
 	//Selection order vars
@@ -31,8 +34,10 @@ public class GameController : MonoBehaviour {
 		/* EASY MODE */
 		GameSettings gameSettings = GameObject.Find ("ParamObj").GetComponent<GameSettings> ();
 		int gameDifficulty = gameSettings.getGameDifficulty ();
+		//int gameDifficulty = 1;
 		if (gameDifficulty == 1) {
 			resetCounter = 5;
+			scoreMultiplier = 1;
 		}
 		
 	}
@@ -60,6 +65,16 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
+
+	void finishPhase() {
+		roundOrder.Clear ();
+		roundNumberPercent = 0;
+	}
+
+	void updateScore() {
+		gameScore += scoreMultiplier;
+		GameObject.Find ("GameScore").GetComponent<TextMesh> ().text = gameScore.ToString ();
+	}
 	
 	/* Finish and animation and check if its player's turn */
 	public void finishedAnimation() {
@@ -73,8 +88,7 @@ public class GameController : MonoBehaviour {
 	/*Start the next iteration round*/
 	public void startNextRound() {
 		if (roundOrder.Count >= resetCounter) {
-			roundOrder.Clear ();
-			roundNumberPercent = 0;
+			finishPhase();
 		}
 		
 		Debug.Log ("Starting new round");
@@ -87,9 +101,6 @@ public class GameController : MonoBehaviour {
 		playerClickNumber = 0;
 		//Get the percentage of Phase done and update the RoundIndicator UI To reflect
 		roundNumberPercent = ((roundOrder.Count * 1.0f) / resetCounter);
-		Debug.Log ("Round Size = " + roundOrder.Count);
-		Debug.Log ("Total Round size = " + resetCounter);
-		Debug.Log ("Percentage of round done = " + roundNumberPercent);
 		GameObject.Find ("RoundNumber").transform.localScale = new Vector3 (roundNumberPercent, 1, 1); 		
 	}	
 	
@@ -106,6 +117,7 @@ public class GameController : MonoBehaviour {
 		
 		if (correctObj.Equals (clickedObj)) {
 			playerClickNumber++;
+			updateScore();
 		} else {
 			Application.LoadLevel ("GameOver");
 		}
