@@ -6,12 +6,12 @@ public class MainMenu : MonoBehaviour {
 	void OnMouseDown() {
 		if (gameObject.name == "EasyMode") {
 			storeGameSettings(1);
-		} else if (gameObject.name == "MediumMode") {
-			//Something to add later
+		} else if (gameObject.name == "NormalMode") {
+			storeGameSettings(2);
 		} else if (gameObject.name == "HardMode") {
-			//Something to add later
+			storeGameSettings(3);
 		} else if (gameObject.name == "CrazyMode") {
-			//Something to add later
+			storeGameSettings(4);
 		} else if (gameObject.name == "Quit") {
 			//Something to add later
 		}
@@ -19,7 +19,6 @@ public class MainMenu : MonoBehaviour {
 
 	void storeGameSettings(int difficulty) {
 		GameObject ParamObj = GameObject.Find ("ParamObj");
-		//Debug.Log ("ParamObj obj = " + ParamObj.name);
 		GameSettings gameSettings = ParamObj.GetComponent<GameSettings> ();
 		gameSettings.setGameDifficulty (difficulty);
 
