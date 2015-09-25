@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	int scoreMultiplier = 1;						//Number of points to add per click based on difficulty level
 	bool shuffleModeEnabled = false;				//Turn on shuffle mode, off for easy, enabled for normal+
 	int shuffleIndex = 5;							//Number of rounds before the game pieces shuffle.
+	bool isCameraRotateEnabled = false;
 	
 	//Game Scoring
 	int gameScore = 0;
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour {
 	bool isPlayerPhase = false;						//Game is currently waiting for the player to replay click order //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
 	int playerClickNumber = 0;						//Number of clicks that the player has processed
 	bool isShufflePhase = false;					//Game is currently shuffling the game pieces //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
+	bool isCameraRotating = false;					//Game is currently rotating camera //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
 
 	
 	//Game data 
@@ -48,19 +50,20 @@ public class GameController : MonoBehaviour {
 			resetCounter = 10;
 			scoreMultiplier = 2;
 			shuffleIndex = 5;
-			shuffleModeEnabled = true;;
-		} else if (gameDifficulty == 2) { 		/* Hard MODE */
+			shuffleModeEnabled = true;
+		} else if (gameDifficulty == 3) { 		/* Hard MODE */
 			resetCounter = 15;
-			scoreMultiplier = 2;
+			scoreMultiplier = 3;
 			shuffleIndex = 5;
-			shuffleModeEnabled = true;;
-		} else if (gameDifficulty == 2) { 		/* Super MODE */
+			shuffleModeEnabled = true;
+			isCameraRotateEnabled = true;
+		} else if (gameDifficulty == 4) { 		/* Super MODE */
 			resetCounter = 20;
-			scoreMultiplier = 2;
+			scoreMultiplier = 4;
 			shuffleIndex = 5;
-			shuffleModeEnabled = true;;
+			shuffleModeEnabled = true;
+			isCameraRotateEnabled = true;
 		}
-		
 	}
 	
 	// FixedUpdate is called once per frame
@@ -70,7 +73,7 @@ public class GameController : MonoBehaviour {
 			startGame = true;
 			startNextRound ();
 		} else {
-			if (isPlayerPhase || isShufflePhase) {	//If the game is in player phase or shuffle do nothing TODO: Clean this up, might be able to remove this check or combine it below
+			if (isPlayerPhase || isShufflePhase || isCameraRotating) {	//If the game is in player phase or shuffle do nothing TODO: Clean this up, might be able to remove this check or combine it below
 				
 			} else if (!inAnimationPhase) {	//If the game is not in an Animation phase, play next animation TODO: Clean this up as well, might be able to pull this out of fixed update
 				//Reset count if at on the last animation TODO: May be able to remove if this is pulled out of fixed update
@@ -130,6 +133,15 @@ public class GameController : MonoBehaviour {
 			gamePieceCounter++;
 		}
 	}
+	/* Trigger the next animation to show player */
+	void playNextAnimation() { //TODO: This should probablly call what ever function that will do the animation if fixedupdate is cleaned up
+		//Check if the current animation number = the size of the round order, if so start player phase
+		if (currentRoundNumber >= roundOrder.Count) {
+			startPlayerPhase ();
+		} else { //else go to next animation
+			inAnimationPhase = false;
+		}
+	}
 
 	/* Register when a shuffle is finished. This is called when the game piece has finished its shuffle and game will continue
 	 * when all peices are done 
@@ -144,19 +156,26 @@ public class GameController : MonoBehaviour {
 			shuffleRegisterCounter = 0;
 			startNextRound();
 		}
+	}
 
+	/* Finish the rotation animation and continue game */
+	public void registerCameraRotate() {
+		isCameraRotating = false;
+		playNextAnimation();
 	}
 	
-	/* Finish and animation and check if its player's turn or to continue the next animation */ //TODO: This should probablly call what ever function that will do the animation if fixedupdate is cleaned up
+	/* Finish and animation and check if its player's turn or to continue the next animation */ 
 	public void finishedAnimation() {
-		//Check if the current animation number = the size of the round order, if so start player phase
-		if (currentRoundNumber >= roundOrder.Count) {
-			startPlayerPhase ();
-		} else { //else go to next animation
-			inAnimationPhase = false;
+		//Rotate camera if game diffuclty hard+ enabled
+		if (isCameraRotateEnabled) {
+			GameObject.Find("Main Camera").GetComponent<CameraController>().rotateCamera();
+			isCameraRotating = true;
+		} else { //else play next animation
+			playNextAnimation();
 		}
 	}
-	
+
+
 	/*Start the next round iteration*/
 	public void startNextRound() {
 		if (roundOrder.Count >= resetCounter) {	//Check if the round is over

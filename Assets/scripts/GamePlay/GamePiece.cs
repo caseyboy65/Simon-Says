@@ -25,6 +25,8 @@ public class GamePiece : MonoBehaviour {
 	void Start () {
 		GameObject.Find ("GameController").GetComponent<GameController> ().registerGamePiece(gameObject);
 		animate = (Animator) GetComponent ("Animator");
+
+
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,7 @@ public class GamePiece : MonoBehaviour {
 		} else if (isShuffling) {
 			animateShuffle();
 		}
+		//removeColor ();
 	}
 
 	void animateShuffle (){
@@ -108,6 +111,10 @@ public class GamePiece : MonoBehaviour {
 		currentLocation = transform.localPosition;
 		shuffleToLocation = newLocation;
 		isShuffling = true;
+	}
+
+	public void removeColor() {
+		gameObject.GetComponent<Renderer> ().material.color = Color.black;
 	}
 
 }

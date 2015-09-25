@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour {
 			storeGameSettings(2);
 		} else if (gameObject.name == "HardMode") {
 			storeGameSettings(3);
-		} else if (gameObject.name == "CrazyMode") {
+		} else if (gameObject.name == "SuperMode") {
 			storeGameSettings(4);
 		} else if (gameObject.name == "Quit") {
 			//Something to add later
