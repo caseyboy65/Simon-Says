@@ -11,7 +11,8 @@ public class GameController : MonoBehaviour {
 	int scoreMultiplier = 1;						//Number of points to add per click based on difficulty level
 	bool shuffleModeEnabled = false;				//Turn on shuffle mode, off for easy, enabled for normal+
 	int shuffleIndex = 5;							//Number of rounds before the game pieces shuffle.
-	bool isCameraRotateEnabled = false;
+	bool isCameraRotateEnabled = false;				//Turn on rotate camera mode for hard+
+	Color defaultColor = Color.gray;				//Default piece color if Mono color is enabled for super+
 	
 	//Game Scoring
 	int gameScore = 0;
@@ -26,7 +27,6 @@ public class GameController : MonoBehaviour {
 	int playerClickNumber = 0;						//Number of clicks that the player has processed
 	bool isShufflePhase = false;					//Game is currently shuffling the game pieces //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
 	bool isCameraRotating = false;					//Game is currently rotating camera //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
-
 	
 	//Game data 
 	ArrayList gamePieces = new ArrayList();			//List of all game pieces invovled in game
@@ -63,6 +63,14 @@ public class GameController : MonoBehaviour {
 			shuffleIndex = 5;
 			shuffleModeEnabled = true;
 			isCameraRotateEnabled = true;
+			changeGamePieceColors();
+		}
+	}
+
+	void changeGamePieceColors() {
+		for (int x = 0; x < gamePieces.Count; x++) {
+			GameObject currentObj = (GameObject) gamePieces[x];
+			currentObj.GetComponent<GamePiece>().setColor(defaultColor);
 		}
 	}
 	
@@ -99,8 +107,11 @@ public class GameController : MonoBehaviour {
 		roundOrder.Clear ();
 		//Reset the Round indicator
 		roundNumberPercent = 0;
-		//Shuffle piece to start next round
-		shufflePieces ();
+		if (shuffleModeEnabled) {//Shuffle piece to start next round
+			shufflePieces ();
+		} else { //Else start next round for easy mode
+			startNextRound();
+		}
 	}
 
 	/* Update the game score by adding to the game score and updating the Score Indicator to reflect score */

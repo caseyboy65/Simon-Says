@@ -14,6 +14,9 @@ public class GamePiece : MonoBehaviour {
 	public float shuffleSpeedByFrame = 100;
 	float shuffleCounter = 0;
 
+	//Color settings
+	public Color startingColor;
+
 
 	//Animation variables
 	float animateSpeed = .025f;
@@ -25,8 +28,7 @@ public class GamePiece : MonoBehaviour {
 	void Start () {
 		GameObject.Find ("GameController").GetComponent<GameController> ().registerGamePiece(gameObject);
 		animate = (Animator) GetComponent ("Animator");
-
-
+		setColor(startingColor);
 	}
 	
 	// Update is called once per frame
@@ -36,7 +38,6 @@ public class GamePiece : MonoBehaviour {
 		} else if (isShuffling) {
 			animateShuffle();
 		}
-		//removeColor ();
 	}
 
 	void animateShuffle (){
@@ -113,8 +114,8 @@ public class GamePiece : MonoBehaviour {
 		isShuffling = true;
 	}
 
-	public void removeColor() {
-		gameObject.GetComponent<Renderer> ().material.color = Color.black;
+	public void setColor(Color newColor) {
+		gameObject.GetComponent<Renderer> ().material.color = newColor;
 	}
 
 }
