@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour {
 	int playerClickNumber = 0;						//Number of clicks that the player has processed
 	bool isShufflePhase = false;					//Game is currently shuffling the game pieces //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
 	bool isCameraRotating = false;					//Game is currently rotating camera //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
+	bool playWatch = false;
+	bool playGo = false;
 	
 	//Game data 
 	ArrayList gamePieces = new ArrayList();			//List of all game pieces invovled in game
@@ -79,6 +81,7 @@ public class GameController : MonoBehaviour {
 		//Start the game TODO: Might be able to just call this in the start function and remove the need for this check 
 		if (startGame == false) {
 			startGame = true;
+			playWatch = true;
 			startNextRound ();
 		} else {
 			if (isPlayerPhase || isShufflePhase || isCameraRotating) {	//If the game is in player phase or shuffle do nothing TODO: Clean this up, might be able to remove this check or combine it below
@@ -174,6 +177,15 @@ public class GameController : MonoBehaviour {
 		isCameraRotating = false;
 		playNextAnimation();
 	}
+
+	public void registerMessage() {
+		if (playWatch) {
+			playWatch = false;
+			startNextRound ();
+		} else if (playGo) {
+			playGo = false;
+		}
+	}
 	
 	/* Finish and animation and check if its player's turn or to continue the next animation */ 
 	public void finishedAnimation() {
@@ -192,10 +204,12 @@ public class GameController : MonoBehaviour {
 		if (roundOrder.Count >= resetCounter) {	//Check if the round is over
 			finishPhase ();
 		} else if (shuffleModeEnabled && 
-		           roundOrder.Count != 0 && 
-		           roundOrder.Count % shuffleIndex == 0 && 
-		           !isShufflePhase) { //Check if the game should shuffle its game pieces
-			shufflePieces();
+			roundOrder.Count != 0 && 
+			roundOrder.Count % shuffleIndex == 0 && 
+			!isShufflePhase) { //Check if the game should shuffle its game pieces
+			shufflePieces ();
+		} else if (playWatch) {
+			GameObject.Find ("Watch").GetComponent<TextController>().animateMessage();
 		} else {	//Else start next round	
 			//Turn off all flags and reset counters as next round is starting //TODO: This might make sense in its own function as a reset function
 			isPlayerPhase = false;
@@ -216,6 +230,7 @@ public class GameController : MonoBehaviour {
 	/* Start the players turn */ //TODO: There may not be need for this, especially if fixedUpdate is cleaned up
 	void startPlayerPhase () {
 		isPlayerPhase = true;
+		GameObject.Find ("Go").GetComponent<TextController>().animateMessage();
 	}
 
 	/* Checks if the game is in player phase, this is used in GamePieces to know if the player can click on gamepieces */
@@ -236,6 +251,7 @@ public class GameController : MonoBehaviour {
 		}
 		
 		if (playerClickNumber >= roundOrder.Count) { //If all game pieces were selected then start next round
+			playWatch = true;
 			startNextRound ();
 		}
 	}
