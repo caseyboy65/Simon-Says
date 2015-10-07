@@ -16,32 +16,16 @@ Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data
 Loading C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.099 seconds
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+- Completed reload, in  0.106 seconds
+desktop: 1920x1080 59Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\System.dll (this message is harmless)
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.402844 ms
+UnloadTime: 1.133733 ms
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 239.
-Total: 0.151555 ms (FindLiveObjects: 0.017600 ms CreateObjectMapping: 0.011244 ms MarkObjects: 0.111466 ms  DeleteObjects: 0.005866 ms)
-
-Starting new round
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Round Size = 1
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Total Round size = 5
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Percentage of round done = 0.2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 287.
+Total: 0.287955 ms (FindLiveObjects: 0.034711 ms CreateObjectMapping: 0.029822 ms MarkObjects: 0.208266 ms  DeleteObjects: 0.006355 ms)
 

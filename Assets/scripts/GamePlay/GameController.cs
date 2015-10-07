@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 	//Reference to the round indicator
 	public Scrollbar roundBar;
-
+	
 	//Game settings based on difficulty
 	int resetCounter = 5;							//Number of rounds to go before the end of the phase
 	int scoreMultiplier = 1;						//Number of points to add per click based on difficulty level
@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
 	
 	//Game Scoring
 	int gameScore = 0;
-
+	
 	//Counter / flags to keep track
 	int shuffleRegisterCounter = 0;					//Used to register the number of pieces that check back after shuffle
 	float roundNumberPercent = 0;					//Percentage of Game round completed. ranges from 0-1
@@ -27,14 +27,15 @@ public class GameController : MonoBehaviour {
 	int playerClickNumber = 0;						//Number of clicks that the player has processed
 	bool isShufflePhase = false;					//Game is currently shuffling the game pieces //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
 	bool isCameraRotating = false;					//Game is currently rotating camera //TODO: May not need if the FixedUpdate function is cleaned up and all animation are removed from it
-	bool playWatch = false;
+	bool playWatch = false;							
 	bool playGo = false;
-	
+	int numberOfTimeToPlayWatchGo = 0;
+
 	//Game data 
 	ArrayList gamePieces = new ArrayList();			//List of all game pieces invovled in game
 	ArrayList gamePiecesLocations = new ArrayList ();//List of the starting locations of all game pieces (not linked to each piece, doesn't matter)
 	ArrayList roundOrder = new ArrayList(); 		//List of the elements to click in order
-
+	
 	/****************************************************************
 	 * 				PRIVATE FUNCTIONS								*
 	 ****************************************************************/
@@ -43,16 +44,18 @@ public class GameController : MonoBehaviour {
 		//Find the game param obj that was passed from start menu to get game settings
 		GameSettings gameSettings = GameObject.Find ("ParamObj").GetComponent<GameSettings> ();
 		int gameDifficulty = gameSettings.getGameDifficulty ();
-
+		
 		//Set game data based on game difficulty
 		if (gameDifficulty == 1) { 				/* EASY MODE */
 			resetCounter = 5;
 			scoreMultiplier = 1;
+			numberOfTimeToPlayWatchGo = 5;
 		} else if (gameDifficulty == 2) { 		/* Normal MODE */
 			resetCounter = 10;
 			scoreMultiplier = 2;
 			shuffleIndex = 5;
 			shuffleModeEnabled = true;
+			numberOfTimeToPlayWatchGo = 2;
 		} else if (gameDifficulty == 3) { 		/* Hard MODE */
 			resetCounter = 15;
 			scoreMultiplier = 3;
@@ -68,7 +71,7 @@ public class GameController : MonoBehaviour {
 			changeGamePieceColors();
 		}
 	}
-
+	
 	void changeGamePieceColors() {
 		for (int x = 0; x < gamePieces.Count; x++) {
 			GameObject currentObj = (GameObject) gamePieces[x];
@@ -93,7 +96,7 @@ public class GameController : MonoBehaviour {
 				}
 				//turn animationPhase flag on to prevent next animation until finished.
 				inAnimationPhase = true;		
-
+				
 				//Find the next gamepiece to animate and animate it
 				GameObject obj = (GameObject)gamePieces [(int)roundOrder [currentRoundNumber]];
 				obj.GetComponent<GamePiece> ().animatePiece ();
@@ -103,7 +106,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	/* Finish up game phase and prepare to start next phase */
 	void finishPhase() {
 		//Clear the round data
@@ -116,22 +119,22 @@ public class GameController : MonoBehaviour {
 			startNextRound();
 		}
 	}
-
+	
 	/* Update the game score by adding to the game score and updating the Score Indicator to reflect score */
 	void updateScore() {
 		gameScore += scoreMultiplier;
 		GameObject.Find ("GameScore").GetComponent<TextMesh> ().text = gameScore.ToString ();
 	}
-
+	
 	/* Shuffle game peices by calling the shuffle function in all game piece objects */
 	void shufflePieces() {
 		//Turn shuffle phase on
 		isShufflePhase = true;
-
+		
 		//Create a temp list of all game piece locations, and keep track of the number of game pieces
 		ArrayList tempGamePiecesLocations = new ArrayList(gamePiecesLocations);
 		int gamePieceCounter = 0;
-
+		
 		//While the temp list still has elements in it, this is done because as we use a location 
 		//we will remove it from the list and loop again to use another random location
 		while (tempGamePiecesLocations.Count > 0) {
@@ -156,14 +159,14 @@ public class GameController : MonoBehaviour {
 			inAnimationPhase = false;
 		}
 	}
-
+	
 	/* Register when a shuffle is finished. This is called when the game piece has finished its shuffle and game will continue
 	 * when all peices are done 
 	 */
 	public void registerShuffle() {
 		//Keep track of the number of pieces that have successfully finished shuffling
 		shuffleRegisterCounter++;
-
+		
 		//If the number of pieces that have shuffled equal the number of known game pieces then continue the game
 		if (shuffleRegisterCounter == gamePieces.Count) {
 			//Reset counter for next use of register shuffle phase
@@ -171,13 +174,13 @@ public class GameController : MonoBehaviour {
 			startNextRound();
 		}
 	}
-
+	
 	/* Finish the rotation animation and continue game */
 	public void registerCameraRotate() {
 		isCameraRotating = false;
 		playNextAnimation();
 	}
-
+	
 	public void registerMessage() {
 		if (playWatch) {
 			playWatch = false;
@@ -197,19 +200,23 @@ public class GameController : MonoBehaviour {
 			playNextAnimation();
 		}
 	}
-
-
+	
+	
 	/*Start the next round iteration*/
 	public void startNextRound() {
 		if (roundOrder.Count >= resetCounter) {	//Check if the round is over
 			finishPhase ();
 		} else if (shuffleModeEnabled && 
-			roundOrder.Count != 0 && 
-			roundOrder.Count % shuffleIndex == 0 && 
-			!isShufflePhase) { //Check if the game should shuffle its game pieces
+		           roundOrder.Count != 0 && 
+		           roundOrder.Count % shuffleIndex == 0 && 
+		           !isShufflePhase) { //Check if the game should shuffle its game pieces
 			shufflePieces ();
-		} else if (playWatch) {
-			GameObject.Find ("Watch").GetComponent<TextController>().animateMessage();
+		} else if (playWatch ) {
+			if (numberOfTimeToPlayWatchGo > 0) {
+				GameObject.Find ("Watch").GetComponent<TextController>().animateMessage();
+			} else {
+				registerMessage();
+			}
 		} else {	//Else start next round	
 			//Turn off all flags and reset counters as next round is starting //TODO: This might make sense in its own function as a reset function
 			isPlayerPhase = false;
@@ -217,32 +224,45 @@ public class GameController : MonoBehaviour {
 			isShufflePhase = false;
 			currentRoundNumber = 0;
 			playerClickNumber = 0;
-
+			
+			int newItemToClick;
+			if (roundOrder.Count > 0){
+				do {
+					newItemToClick = Random.Range (0, 9);
+				} while (newItemToClick == (int) roundOrder[roundOrder.Count - 1]);	//Keep looping if the new piece is the same as last.
+			} else {
+				newItemToClick = Random.Range (0, 9);
+			}
 			//add the next game piece to click
-			roundOrder.Add (Random.Range (0, 9));
-
+			roundOrder.Add (newItemToClick);
+			
 			//Get the percentage of Phase done and update the RoundIndicator UI To reflect //TODO: This should probablly be its own function
 			roundNumberPercent = ((roundOrder.Count * 1.0f) / resetCounter);
 			roundBar.size = (roundOrder.Count * 1.0f) / (resetCounter * 1.0f);
 		}
 	}	
-
+	
 	/* Start the players turn */ //TODO: There may not be need for this, especially if fixedUpdate is cleaned up
 	void startPlayerPhase () {
 		isPlayerPhase = true;
-		GameObject.Find ("Go").GetComponent<TextController>().animateMessage();
+		if (numberOfTimeToPlayWatchGo > 0) {
+			numberOfTimeToPlayWatchGo--;
+			GameObject.Find ("Go").GetComponent<TextController> ().animateMessage ();
+		} else {
+			registerMessage ();
+		}
 	}
-
+	
 	/* Checks if the game is in player phase, this is used in GamePieces to know if the player can click on gamepieces */
 	public bool getPlayerPhase() {
 		return isPlayerPhase;
 	}
-
+	
 	/* Check if what the player has selected is the correct gamePiece in the correct order */
 	public void verifyClick (GameObject clickedObj) {
 		//Get the current game piece that was expected to be selected
 		GameObject correctObj = (GameObject)gamePieces [(int) roundOrder[playerClickNumber]];
-
+		
 		if (correctObj.Equals (clickedObj)) { //Check if the last clicked game piece is the correct piece
 			playerClickNumber++;
 			updateScore();
@@ -255,7 +275,7 @@ public class GameController : MonoBehaviour {
 			startNextRound ();
 		}
 	}
-
+	
 	/* Register the game pieces in use of the game, this is called on start of GamePiece objects */
 	public void registerGamePiece(GameObject gameObj) {
 		//Add the game piece itself
