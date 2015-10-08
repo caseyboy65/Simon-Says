@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour {
 	bool shuffleModeEnabled = false;				//Turn on shuffle mode, off for easy, enabled for normal+
 	int shuffleIndex = 5;							//Number of rounds before the game pieces shuffle.
 	bool isCameraRotateEnabled = false;				//Turn on rotate camera mode for hard+
-	Color defaultColor = Color.gray;				//Default piece color if Mono color is enabled for super+
 	
 	//Game Scoring
 	int gameScore = 0;
@@ -49,7 +48,7 @@ public class GameController : MonoBehaviour {
 		if (gameDifficulty == 1) { 				/* EASY MODE */
 			resetCounter = 5;
 			scoreMultiplier = 1;
-			numberOfTimeToPlayWatchGo = 5;
+			numberOfTimeToPlayWatchGo = 2;
 		} else if (gameDifficulty == 2) { 		/* Normal MODE */
 			resetCounter = 10;
 			scoreMultiplier = 2;
@@ -68,14 +67,6 @@ public class GameController : MonoBehaviour {
 			shuffleIndex = 5;
 			shuffleModeEnabled = true;
 			isCameraRotateEnabled = true;
-			changeGamePieceColors();
-		}
-	}
-	
-	void changeGamePieceColors() {
-		for (int x = 0; x < gamePieces.Count; x++) {
-			GameObject currentObj = (GameObject) gamePieces[x];
-			currentObj.GetComponent<GamePiece>().setColor(defaultColor);
 		}
 	}
 	
@@ -87,7 +78,7 @@ public class GameController : MonoBehaviour {
 			playWatch = true;
 			startNextRound ();
 		} else {
-			if (isPlayerPhase || isShufflePhase || isCameraRotating) {	//If the game is in player phase or shuffle do nothing TODO: Clean this up, might be able to remove this check or combine it below
+			if (isPlayerPhase || isShufflePhase || isCameraRotating || playWatch || playGo) {	//If the game is in player phase or shuffle do nothing TODO: Clean this up, might be able to remove this check or combine it below
 				
 			} else if (!inAnimationPhase) {	//If the game is not in an Animation phase, play next animation TODO: Clean this up as well, might be able to pull this out of fixed update
 				//Reset count if at on the last animation TODO: May be able to remove if this is pulled out of fixed update

@@ -16,7 +16,12 @@ public class GamePiece : MonoBehaviour {
 
 	//Color settings
 	public Color startingColor;
+	Color defaultColor = Color.gray;				//Default piece color if Mono color is enabled for super+
 
+	//Audio settings
+	private AudioSource source;
+	private float lowPitch = 0.5f;
+	private float highPitch = 1.0f;
 
 	//Animation variables
 	float animateSpeed = .025f;
@@ -28,7 +33,15 @@ public class GamePiece : MonoBehaviour {
 	void Start () {
 		GameObject.Find ("GameController").GetComponent<GameController> ().registerGamePiece(gameObject);
 		animate = (Animator) GetComponent ("Animator");
-		setColor(startingColor);
+		GameSettings gameSettings = GameObject.Find ("ParamObj").GetComponent<GameSettings> ();
+		int gameDifficulty = gameSettings.getGameDifficulty ();
+		if (gameDifficulty == 4) {
+			setColor (defaultColor);
+		} else {
+			setColor (startingColor);
+		}
+
+		source = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -98,6 +111,8 @@ public class GamePiece : MonoBehaviour {
 
 	public void animatePiece() {
 		isAnimating = true;
+		source.pitch = Random.Range (lowPitch, highPitch);
+		source.Play ();
 	}
 
 	public void setAnimateSpeed(float newSpeed) {
