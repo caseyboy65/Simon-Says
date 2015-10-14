@@ -24,7 +24,15 @@ public class MainMenu : MonoBehaviour {
 
 		//Prevent object from being to destroyed to pass params between scenes
 		DontDestroyOnLoad(ParamObj);
+
+		//Sound effect
+		GameObject.Find("StartGameSound").GetComponent<SoundEffects>().playSound();
+
 		//Load game play scene to start game
+		Invoke("loadGame", 2);
+	}
+
+	void loadGame() {
 		Application.LoadLevel ("gamePlay");
 	}
 

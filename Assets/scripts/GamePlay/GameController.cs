@@ -34,12 +34,19 @@ public class GameController : MonoBehaviour {
 	ArrayList gamePieces = new ArrayList();			//List of all game pieces invovled in game
 	ArrayList gamePiecesLocations = new ArrayList ();//List of the starting locations of all game pieces (not linked to each piece, doesn't matter)
 	ArrayList roundOrder = new ArrayList(); 		//List of the elements to click in order
+
+	//Audio settings
+	private AudioSource failedSound;
+	private float lowPitch = 0.5f;
+	private float highPitch = 1.0f;
 	
 	/****************************************************************
 	 * 				PRIVATE FUNCTIONS								*
 	 ****************************************************************/
 	/* Initate starting variables */
 	void Start () {
+		//Init source AudioSource object
+		failedSound = gameObject.GetComponent<AudioSource>();
 		//Find the game param obj that was passed from start menu to get game settings
 		GameSettings gameSettings = GameObject.Find ("ParamObj").GetComponent<GameSettings> ();
 		int gameDifficulty = gameSettings.getGameDifficulty ();
@@ -140,6 +147,8 @@ public class GameController : MonoBehaviour {
 			currentPiece.GetComponent<GamePiece>().shufflePiece(newLocation);
 			gamePieceCounter++;
 		}
+
+		GameObject.Find("ShuffleSound").GetComponent<SoundEffects>().playSound();
 	}
 	/* Trigger the next animation to show player */
 	void playNextAnimation() { //TODO: This should probablly call what ever function that will do the animation if fixedupdate is cleaned up
@@ -258,13 +267,19 @@ public class GameController : MonoBehaviour {
 			playerClickNumber++;
 			updateScore();
 		} else { //else if not, then game over
-			Application.LoadLevel ("GameOver");
+			GameObject.Find("FailedSound").GetComponent<SoundEffects>().playSound();
+			//Application.LoadLevel ("GameOver");
+			Invoke("gameOver", 2);
 		}
 		
 		if (playerClickNumber >= roundOrder.Count) { //If all game pieces were selected then start next round
 			playWatch = true;
 			startNextRound ();
 		}
+	}
+
+	void gameOver() {
+		Application.LoadLevel ("GameOver");
 	}
 	
 	/* Register the game pieces in use of the game, this is called on start of GamePiece objects */
