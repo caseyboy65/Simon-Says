@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 274cf8bc43f6c174eb8c7dedb9e3659a
-timeCreated: 1442963686
+timeCreated: 1444874379
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: healthBar
+    21300002: Memo-Cubes
+    21300004: MainMenuBackground
+    21300006: Easy
+    21300008: Hard
+    21300010: Normal
+    21300012: Insane
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -60,6 +66,66 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 1, y: 0, z: 0, w: 0}
+    - name: Memo-Cubes
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 819
+        width: 590
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MainMenuBackground
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 658
+        width: 98
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Easy
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 747
+        width: 116
+        height: 54
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hard
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 748
+        width: 121
+        height: 52
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Normal
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 698
+        width: 185
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Insane
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 691
+        width: 173
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

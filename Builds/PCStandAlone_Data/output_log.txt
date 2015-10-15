@@ -16,7 +16,7 @@ Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data
 Loading C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.115 seconds
+- Completed reload, in  0.109 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,61 +24,24 @@ desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Banana\Documents\Simon Says\Builds\PCStandAlone_Data\Managed\System.dll (this message is harmless)
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.360311 ms
+UnloadTime: 0.469333 ms
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 287.
-Total: 0.304577 ms (FindLiveObjects: 0.023466 ms CreateObjectMapping: 0.041066 ms MarkObjects: 0.226355 ms  DeleteObjects: 0.006844 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 320.
+Total: 0.181866 ms (FindLiveObjects: 0.017111 ms CreateObjectMapping: 0.017111 ms MarkObjects: 0.133955 ms  DeleteObjects: 0.007822 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 12.937468 ms
+UnloadTime: 8.119467 ms
 
-Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 172.
-Total: 0.321688 ms (FindLiveObjects: 0.025422 ms CreateObjectMapping: 0.025422 ms MarkObjects: 0.221955 ms  DeleteObjects: 0.038133 ms)
-
-Going back to main menu
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.530933 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 194.
-Total: 0.369111 ms (FindLiveObjects: 0.030800 ms CreateObjectMapping: 0.049377 ms MarkObjects: 0.262533 ms  DeleteObjects: 0.013200 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.629200 ms
-
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 291.
-Total: 0.405288 ms (FindLiveObjects: 0.036177 ms CreateObjectMapping: 0.025911 ms MarkObjects: 0.317777 ms  DeleteObjects: 0.014666 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.958711 ms
-
-Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 172.
-Total: 0.338800 ms (FindLiveObjects: 0.026400 ms CreateObjectMapping: 0.025422 ms MarkObjects: 0.237600 ms  DeleteObjects: 0.039111 ms)
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 177.
+Total: 0.228800 ms (FindLiveObjects: 0.018088 ms CreateObjectMapping: 0.018088 ms MarkObjects: 0.156933 ms  DeleteObjects: 0.028355 ms)
 
 Going back to main menu
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.532888 ms
+UnloadTime: 0.678088 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 194.
-Total: 0.361777 ms (FindLiveObjects: 0.030311 ms CreateObjectMapping: 0.029822 ms MarkObjects: 0.278666 ms  DeleteObjects: 0.012222 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.281600 ms
-
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 291.
-Total: 0.193600 ms (FindLiveObjects: 0.014666 ms CreateObjectMapping: 0.014177 ms MarkObjects: 0.152044 ms  DeleteObjects: 0.006844 ms)
-
-ArgumentOutOfRangeException: Index is less than 0 or more than or equal to the list count.
-Parameter name: index
-0
-  at System.Collections.ArrayList.ThrowNewArgumentOutOfRangeException (System.String name, System.Object actual, System.String message) [0x00000] in <filename unknown>:0 
-  at System.Collections.ArrayList.get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at GameController.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 281.
+Total: 0.365200 ms (FindLiveObjects: 0.034711 ms CreateObjectMapping: 0.026400 ms MarkObjects: 0.277688 ms  DeleteObjects: 0.016133 ms)
 

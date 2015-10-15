@@ -96,6 +96,7 @@ public class GamePiece : MonoBehaviour {
 		
 		transform.localScale = new Vector3(newSize, newSize, transform.localScale.z);
 	}
+
 	void OnMouseDown() {
 		if (GameObject.Find ("GameController").GetComponent<GameController> ().getPlayerPhase ()) {
 			GameObject.Find("SuccessSound").GetComponent<SoundEffects>().playSound();

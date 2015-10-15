@@ -52,8 +52,10 @@
      <Compile Include="Assets\scripts\GamePlay\GamePiece.cs" />
      <Compile Include="Assets\scripts\GamePlay\SoundEffects.cs" />
      <Compile Include="Assets\scripts\GamePlay\TextController.cs" />
+     <Compile Include="Assets\scripts\MainMenu\BackgroundController.cs" />
      <Compile Include="Assets\scripts\MainMenu\GameSettings.cs" />
      <Compile Include="Assets\scripts\MainMenu\MainMenu.cs" />
+     <Compile Include="Assets\scripts\MainMenu\MainMenuPieces.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

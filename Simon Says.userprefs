@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\GamePlay\GameController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\MainMenu\BackgroundController.cs">
     <Files>
-      <File FileName="Assets\scripts\GamePlay\GameController.cs" Line="69" Column="30" />
+      <File FileName="Assets\scripts\MainMenu\BackgroundController.cs" Line="85" Column="24" />
+      <File FileName="Assets\scripts\GamePlay\GameController.cs" Line="193" Column="2" />
       <File FileName="Assets\scripts\GamePlay\SoundEffects.cs" Line="15" Column="9" />
-      <File FileName="Assets\scripts\GamePlay\GamePiece.cs" Line="108" Column="3" />
+      <File FileName="Assets\scripts\GamePlay\GamePiece.cs" Line="13" Column="26" />
       <File FileName="Assets\scripts\MainMenu\MainMenu.cs" Line="29" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
